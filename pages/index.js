@@ -1,16 +1,25 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import React from "react";
+
+import { Countries, Total } from "../components";
+
+import API from "../api";
 
 export default function Home() {
+  React.useEffect(() => {
+    API.get("totals").then((result) => console.log(result.data));
+  }, []);
+
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
+        <title>COVID-19 Statistics</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>main</main>
-      <footer>Footer</footer>
+      <main>
+        <Total />
+      </main>
     </div>
   );
 }
