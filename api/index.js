@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default axios.create({
+const API = axios.create({
   baseURL: "https://covid-19-data.p.rapidapi.com/",
   responseType: "json",
   headers: {
@@ -9,3 +9,10 @@ export default axios.create({
     useQueryString: true,
   },
 });
+
+export default {
+  fetchTotal: async () => {
+    const total = await API.get("totals");
+    return total.data;
+  },
+};

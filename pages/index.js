@@ -1,13 +1,15 @@
 import Head from "next/head";
 import React from "react";
 
-import { Countries, Total } from "../components";
+import { Countries, Total, Spinner } from "../components";
+import { fetchTotal } from "../redux/bus/totalReducer";
 
-import API from "../api";
+import { useDispatch } from "react-redux";
 
 export default function Home() {
+  const dispatch = useDispatch();
   React.useEffect(() => {
-    API.get("totals").then((result) => console.log(result.data));
+    dispatch(fetchTotal());
   }, []);
 
   return (
